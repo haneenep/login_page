@@ -30,7 +30,7 @@ app.set("view engine", "ejs");
 app.get('/', (req, res) => {
     if (req.session.error) {
         req.session.error = null;
-        res.render('base', {error : "Invalid Email/Password"});
+        res.render('base', { error: "Invalid Email/Password" });
     } else if (req.session.user) {
         res.redirect('/dashboard')
     } else {
@@ -38,14 +38,14 @@ app.get('/', (req, res) => {
     }
 })
 
-app.get('/another',(req,res) => {
-    res.sendFile(path.join(__dirname, "newfile.html") , (err,data) => {
-        if(err) throw err
+app.get('/another', (req, res) => {
+    res.sendFile(path.join(__dirname, "newfile.html"), (err, data) => {
+        if (err) throw err
         console.log("successfull");
     })
 })
 
-app.get('/logsout',(req,res) => {
+app.get('/logsout', (req, res) => {
     res.redirect('/');
 })
 
