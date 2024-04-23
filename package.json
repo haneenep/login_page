@@ -1,0 +1,23 @@
+{
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "ejs": "^3.1.9",
+    "express": "^4.19.2",
+    "express-cache-controller": "^1.1.0",
+    "express-session": "^1.18.0",
+    "nocache": "^4.0.0",
+    "node": "^18.20.0",
+    "nodemon": "^3.1.0",
+    "session": "^0.1.0",
+    "uuid": "^9.0.1"
+  },
+  "scripts": {
+    "start": "nodemon"
+  },
+  "name": "myown-login",
+  "version": "1.0.0",
+  "main": "server.js",
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

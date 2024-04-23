@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/static/css/base.css">
+</head>
+<body>
+    <div class="login">
+        <div class="form" >
+          <h2>dashboard</h2>
+          <% if(locals.user) { %>
+            <h2><%= user %></h2>
+            <% }else { %>
+              <h1>user</h1>
+              <% } %>
+          <form class="login-form" method="post" action="/logout" >
+            <button>logout</button>
+          </form>  
+         <form action="/another">
+          <button>new</button>
+         </form>
+        </div>
+      </div>
+</body>
+</html>

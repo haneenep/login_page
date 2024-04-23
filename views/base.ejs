@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="/static/css/base.css">
+  <style>
+    .error {
+      color: red;
+      font-size: x-small;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="login">
+    <div class="form">
+      <h3>Welcome to Login Page</h3>
+      <% if(locals.error){ %>
+        <h5 style="color: red;" ><%= error%></h5>
+        <% } else if(locals.logout){%>
+          <h4 style="color: green;" ><%= logout%></h4>
+          <% } %>
+        <form id="signupForm" action="/login" method="post">
+          <input type="email" placeholder="email" name="email" />
+          <div id="emailError" class="error"></div>
+          <input type="password" placeholder="password" name="password" />
+          <div id="passwordError" class="error"></div>
+          <button id="submitButton" disabled>login</button>
+        </form>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('signupForm');
+    const emailInput = document.querySelector('input[type="email"]');
+    const passwordInput = document.querySelector('input[type="password"]');
+    const emailError = document.getElementById('emailError');
+    const passwordError = document.getElementById('passwordError');
+    const submitButton = document.getElementById('submitButton');
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+      if (!validateEmail(emailInput.value)) {
+        emailError.textContent = 'Email must be in the format example@gmail.com and contain at least 4 characters before @';
+      } else {
+        emailError.textContent = '';
+      }
+
+      if (!validatePassword(passwordInput.value)) {
+        passwordError.textContent = 'Password cannot contain spaces';
+      } else {
+        passwordError.textContent = '';
+      }
+
+      if (validateEmail(emailInput.value) && validatePassword(passwordInput.value)) {
+        form.submit();
+      }
+    });
+
+    emailInput.addEventListener('input', function() {
+      if (!validateEmail(emailInput.value)) {
+        emailError.textContent = 'Email must be in valid format';
+      } else {
+        emailError.textContent = '';
+      }
+      checkForm();
+    });
+
+    passwordInput.addEventListener('input', function() {
+      if (!validatePassword(passwordInput.value)) {
+        passwordError.textContent = 'Password cannot contain spaces';
+      } else {
+        passwordError.textContent = '';
+      }
+      checkForm();
+    });
+
+    function validateEmail(email) {
+      const regex = /^[^\s@]{4,}@+[^\s@]+\.[^\s@]+$/;
+      return regex.test(email);
+    }
+
+    function validatePassword(password) {
+      return !/\s/.test(password);
+    }
+
+    function checkForm() {
+      if (emailError.textContent === '' && passwordError.textContent === '') {
+        submitButton.disabled = false;
+      } else {
+        submitButton.disabled = true;
+      }
+    }
+  </script>
+</body>
+
+</html>
